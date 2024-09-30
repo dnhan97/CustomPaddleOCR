@@ -1,24 +1,24 @@
 Global:
   debug: false
-  use_gpu: false
+  use_gpu: True
   epoch_num: 500
   log_smooth_window: 20
   print_batch_step: 10
-  save_model_dir: ./output/v3_model
+  save_model_dir: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/output/v3_model
   save_epoch_step: 3
   eval_batch_step: [0, 2000]
   cal_metric_during_train: true
-  pretrained_model: ./pretrain_models/en_PP-OCRv3_rec_train/best_accuracy.pdparams
+  pretrained_model: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/pretrain_models/en_PP-OCRv3_rec_train/best_accuracy.pdparams
   checkpoints:
   save_inference_dir:
   use_visualdl: false
   infer_img: doc/imgs_words/ch/word_1.jpg
-  character_dict_path: ./dict/latin_dict.txt
+  character_dict_path: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/dict/latin_dict.txt
   max_text_length: &max_text_length 25
   infer_mode: false
   use_space_char: false
   distributed: true
-  save_res_path: ./output/rec/predicts_ppocrv3_en.txt
+  save_res_path: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/output/rec/predicts_ppocrv3_en.txt
 
 
 Optimizer:
@@ -76,10 +76,10 @@ Metric:
 Train:
   dataset:
     name: SimpleDataSet
-    data_dir: .
+    data_dir: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/
     ext_op_transform_idx: 1
     label_file_list:
-    - ./train/train_list.txt
+    - /kaggle/working/CustomPaddleOCR/finetune_paddleocr/train/train_list.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -102,15 +102,15 @@ Train:
         - valid_ratio
   loader:
     shuffle: true
-    batch_size_per_card: 64
+    batch_size_per_card: 128
     drop_last: false
     num_workers: 4
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: .
+    data_dir: /kaggle/working/CustomPaddleOCR/finetune_paddleocr/
     label_file_list:
-    - ./val/val_list.txt
+    - /kaggle/working/CustomPaddleOCR/finetune_paddleocr/val/val_list.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -128,5 +128,5 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 64
+    batch_size_per_card: 128
     num_workers: 4
