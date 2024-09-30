@@ -846,7 +846,7 @@ def preprocess(is_train=False):
     elif use_mlu:
         device = "mlu:{0}".format(os.getenv("FLAGS_selected_mlus", 0))
     else:
-        device = "gpu:{}".format(dist.ParallelEnv().dev_id) if use_gpu else "cpu"
+        device = "gpu:{}".format(dist.get_rank()) if use_gpu else "cpu"
     check_device(use_gpu, use_xpu, use_npu, use_mlu)
 
     device = paddle.set_device(device)
