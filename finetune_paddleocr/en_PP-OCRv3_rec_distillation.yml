@@ -1,6 +1,6 @@
 Global:
   debug: false
-  use_gpu: True
+  use_gpu: true
   epoch_num: 1000
   log_smooth_window: 20
   print_batch_step: 10
